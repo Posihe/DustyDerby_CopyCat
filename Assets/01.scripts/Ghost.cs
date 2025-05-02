@@ -32,6 +32,7 @@ public class Ghost : MonoBehaviour
     {
         isChasing = true;
         agent.SetDestination(target.transform.position);
+        
 
         yield return new WaitForSeconds(waitingTime);
 
