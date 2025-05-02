@@ -12,6 +12,7 @@ public class Move : MonoBehaviour
 
     private Vector3 targetPosition;
     private bool isMoving;
+   
 
     private void Start()
     {
@@ -86,5 +87,15 @@ public class Move : MonoBehaviour
         }
 
       
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider!=null)
+        {
+            isMoving=false;
+
+
+        }
     }
 }
