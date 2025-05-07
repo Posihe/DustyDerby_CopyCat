@@ -11,6 +11,8 @@ public class Ghost : LivingEntity
     private float waitingTime = 10f;
     private float passTime = 0f;
     public ParticleSystem hitEffect;
+    public float timeBetAttack=1f;
+    private float lastAttackTime;
 
     void Start()
     {
@@ -36,20 +38,28 @@ public class Ghost : LivingEntity
         }
     }
 
-   
+
+
+  
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Box"))
         {
             Box box = other.gameObject.GetComponent<Box>();
-            if (box.isHit == true)
+            if (box.isHit == true && !dead)
             {
                 OnDamage(10);
                 hitEffect.transform.position = gameObject.transform.position;
                 hitEffect.Play();
                 box.isHit = false;
                 Debug.Log(health);
+                if (health <= 0)
+                {
+
+                    dead = true;
+                    Destroy(gameObject);
+                }
 
             }
 
@@ -69,14 +79,14 @@ public class Ghost : LivingEntity
         passTime = 0f;
     }
 
-    private void OnTriggerStay(Collider other)
+    public override void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-
             PlayerHealth player = other.GetComponent<PlayerHealth>();
-            if (player != null)
+            if (player != null && Time.time >= lastAttackTime + timeBetAttack&&isChasing)
             {
+                lastAttackTime = Time.time;
                 player.OnDamage(10);
                 Debug.Log(player.health);
             }

@@ -8,7 +8,10 @@ public class LivingEntity : MonoBehaviour,IDamageable
     public bool dead { get; protected set; }
 
     public event Action onDeath;
-   
+
+    float timeBetAttack = 0.5f;
+    float lastAttackTime;
+
     protected virtual void OnEnable()
     {
         dead = false;
@@ -60,21 +63,62 @@ public class LivingEntity : MonoBehaviour,IDamageable
 
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(!dead)
+    //    {
+    //        IItem item = other.GetComponent<IItem>();
+    //        if(item!=null)
+    //        {
+    //            item.Use(gameObject);
+
+
+    //        }
+
+
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
-        if(!dead)
+        Debug.Log($"[TriggerEnter] {gameObject.name} 감지: {other.gameObject.name}");
+
+        if (!dead)
         {
             IItem item = other.GetComponent<IItem>();
-            if(item!=null)
+            if (item != null)
             {
+                Debug.Log($"[ItemUse] {item} 사용");
                 item.Use(gameObject);
-
-
             }
-
-
         }
     }
 
-   
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!dead)
+    {
+        IItem item = collision.gameObject.GetComponent<IItem>();
+        if (item != null)
+        {
+            item.Use(gameObject);
+        }
+    }
+    }
+
+    public virtual void OnTriggerStay(Collider other)
+    {
+        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            if (player != null && Time.time >= lastAttackTime + timeBetAttack)
+            {
+                lastAttackTime = Time.time;
+                player.OnDamage(10);
+                Debug.Log(player.health);
+            }
+        }
+    }
 }

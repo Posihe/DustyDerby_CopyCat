@@ -1,6 +1,4 @@
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
-using UnityEditor;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,8 +23,14 @@ public class GameManager : MonoBehaviour
 
     private GameObject player;
 
-   
 
+    public void Update()
+    {
+        if (score >= 10)
+        {
+            GameClear();
+        }
+    }
 
     public void AddScore(int newScore)
     {
@@ -38,5 +42,23 @@ public class GameManager : MonoBehaviour
 
             UIManager.instance.UpdateScoreText(score);
         }
+    }
+
+
+    public void GameClear()
+    {
+        UIManager.instance.Clear();
+
+    
+
+
+
+    }
+
+
+    public void Title()
+    {
+
+        SceneManager.LoadScene("Title");
     }
 }

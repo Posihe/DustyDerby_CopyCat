@@ -17,7 +17,7 @@ public class Enemy : LivingEntity
         agent = GetComponent<NavMeshAgent>();
         m_count = 0;
         InvokeRepeating("MoveToWaypoint", 0f, 2f);
-        health = 100;
+        health = 3;
     }
 
     private void Update()
@@ -70,13 +70,19 @@ public class Enemy : LivingEntity
         if (other.gameObject.CompareTag("Box"))
         {
             Box box = other.gameObject.GetComponent<Box>();
-            if (box.isHit == true)
+            if (box.isHit == true&&!dead)
             {
-                OnDamage(10);
+                OnDamage(1);
                 hitEffect.transform.position = gameObject.transform.position;
                 hitEffect.Play();
                 box.isHit = false;
                 Debug.Log(health);
+                if(health<=0)
+                {
+
+                    dead = true;
+                    Destroy(gameObject);
+                }
 
             }
 

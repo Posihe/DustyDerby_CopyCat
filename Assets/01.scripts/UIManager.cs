@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject menuPanel;
     public Image continueText;
     bool isStop;
-
+    public GameObject ClearPanel;
     public static UIManager m_instance;
 
     private void Start()
@@ -29,9 +29,9 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateScoreText(int newScore)
     {
-      
-        scoreText.text ="Score: "+ newScore;
 
+        // scoreText.text ="Score: "+ newScore;
+        scoreText.text = newScore + "/10";
 
     }
 
@@ -67,5 +67,12 @@ public class UIManager : MonoBehaviour
 
         Application.Quit();
 
+    }
+
+    public void Clear()
+    {
+
+
+        ClearPanel.SetActive(true);
     }
 }
