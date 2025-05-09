@@ -21,10 +21,7 @@ public class Ghost : LivingEntity
         health = 200;
     }
 
-    //public override void OnDamage(float damage)
-    //{
-    //    base.OnDamage(damage);
-    //}
+   
 
     void Update()
     {
