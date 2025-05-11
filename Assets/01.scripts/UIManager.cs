@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     public void UpdateScoreText(int newScore)
     {
 
-        // scoreText.text ="Score: "+ newScore;
+        
         scoreText.text = newScore + "/10";
 
     }
