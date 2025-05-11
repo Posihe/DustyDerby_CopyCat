@@ -5936,10 +5936,10 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 1, z: 0}
   TrackerSettings:
     BindingMode: 3
-    PositionDamping: {x: 0.1, y: 0.5, z: 0.3}
+    PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 1
     RotationDamping: {x: 1, y: 1, z: 1}
-    QuaternionDamping: 0
+    QuaternionDamping: 2
   OrbitStyle: 0
   Radius: 0.5
   Orbits:
@@ -6842,7 +6842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8565394776834983270
 Transform:
   m_ObjectHideFlags: 0
@@ -6892,7 +6892,6 @@ MonoBehaviour:
   startingHealth: 100
   target: {fileID: 797376793}
   hitEffect: {fileID: 1377428855}
-  timeBetAttack: 2
 --- !u!195 &8732557394774321843
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ public class LivingEntity : MonoBehaviour,IDamageable
 
     public event Action onDeath;
 
-    float timeBetAttack = 0.5f;
-    float lastAttackTime;
+    protected float timeBetAttack = 0.5f;
+   protected float lastAttackTime;
 
     protected virtual void OnEnable()
     {

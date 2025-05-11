@@ -11,13 +11,13 @@ public class Ghost : LivingEntity
     private float waitingTime = 10f;
     private float passTime = 0f;
     public ParticleSystem hitEffect;
-    public float timeBetAttack=1f;
-    private float lastAttackTime;
+   
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         isChasing = false;
+        timeBetAttack = 1f;
         health = 200;
     }
 
