@@ -9,6 +9,8 @@ public class Enemy : LivingEntity
     Transform m_target = null;
     public ParticleSystem hitEffect;
     int m_count;
+    private AudioSource audio;
+    public AudioClip clip;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +20,9 @@ public class Enemy : LivingEntity
         m_count = 0;
         InvokeRepeating("MoveToWaypoint", 0f, 2f);
         health = 3;
+        audio = GetComponent<AudioSource>();
+        audio.clip = clip; 
+        
     }
 
     private void Update()
@@ -75,6 +80,7 @@ public class Enemy : LivingEntity
                 OnDamage(1);
                 hitEffect.transform.position = gameObject.transform.position;
                 hitEffect.Play();
+                audio.Play();
                 box.isHit = false;
                 Debug.Log(health);
                 if(health<=0)

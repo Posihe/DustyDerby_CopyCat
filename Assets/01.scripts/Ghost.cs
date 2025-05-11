@@ -11,6 +11,8 @@ public class Ghost : LivingEntity
     private float waitingTime = 10f;
     private float passTime = 0f;
     public ParticleSystem hitEffect;
+    private AudioSource audio;
+    public AudioClip clip;
    
 
     void Start()
@@ -19,6 +21,8 @@ public class Ghost : LivingEntity
         isChasing = false;
         timeBetAttack = 1f;
         health = 30;
+        audio = GetComponent<AudioSource>();
+        audio.clip = clip;
     }
 
    
@@ -49,6 +53,7 @@ public class Ghost : LivingEntity
                 OnDamage(10);
                 hitEffect.transform.position = gameObject.transform.position;
                 hitEffect.Play();
+                audio.Play();
                 box.isHit = false;
                 Debug.Log(health);
                 if (health <= 0)
