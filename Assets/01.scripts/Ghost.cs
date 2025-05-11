@@ -18,7 +18,7 @@ public class Ghost : LivingEntity
         agent = GetComponent<NavMeshAgent>();
         isChasing = false;
         timeBetAttack = 1f;
-        health = 200;
+        health = 30;
     }
 
    
@@ -65,9 +65,12 @@ public class Ghost : LivingEntity
 
     IEnumerator Chase()
     {
-
+       float distance= Vector3.Distance(transform.position ,target.transform.position);
         isChasing = true;
-        agent.SetDestination(target.transform.position);
+        if (distance >= 0.5f)
+        {
+            agent.SetDestination(target.transform.position);
+        }
 
 
         yield return new WaitForSeconds(waitingTime);
