@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : LivingEntity
 {
@@ -22,6 +23,7 @@ public class PlayerHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        SceneManager.LoadScene("Title");
         Destroy(gameObject);
     }
 }

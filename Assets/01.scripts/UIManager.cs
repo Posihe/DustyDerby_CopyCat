@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     public GameObject ClearPanel;
     public static UIManager m_instance;
 
+    
+
     private void Start()
     {
         isStop = false;

@@ -5,6 +5,7 @@ public class PlayerMovement : LivingEntity
 {
     Rigidbody rb;
     PlayerInput playerInput;
+
     float moveSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,9 +21,10 @@ public class PlayerMovement : LivingEntity
     {
         hitcollider();
 
+      
     }
 
-    
+
 
     private void Move()
     {
@@ -74,6 +76,8 @@ public class PlayerMovement : LivingEntity
 
 
     }
+
+   
 
 
 
